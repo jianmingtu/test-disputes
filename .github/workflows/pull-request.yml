@@ -3,6 +3,7 @@ name: Pull Request Workflow
 on:
   - pull_request
 
+jobs:
   build-image:
     uses: jianmingtu/test-disputes/.github/workflows/docker-build-image.yml@main
     with:
