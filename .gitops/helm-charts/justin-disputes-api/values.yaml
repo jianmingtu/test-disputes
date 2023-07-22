@@ -1,0 +1,101 @@
+## @section Section Title"
+
+## @param replicaCount Number of replicas
+##
+replicaCount: 1
+
+image:
+  ## @param image.repository what repo will be used
+  repository: justin-disputes-api
+  ## @param image.pullPolicy
+  pullPolicy: IfNotPresent
+  ## @param image.tag Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+forceRedeploy: false
+
+## @param nameOverride
+nameOverride: ""
+## @param fullnameOverride
+fullnameOverride: ""
+
+## @param podAnnotations
+podAnnotations: {}
+
+## @param podSecurityContext
+podSecurityContext: {}
+# fsGroup: 2000
+
+## @param securityContext
+securityContext: {}
+  # capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
+
+## @param healthPort port to be used by the health endpoint
+healthPort: 9999
+
+service:
+  ## @param service.type
+  type: ClusterIP
+  ## @param service.port
+  port: 8080
+
+## @param resources
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+#   cpu: 100m
+#   memory: 128Mi
+# requests:
+#   cpu: 100m
+#   memory: 128Mi
+
+probe:
+  ## @param probe.path defines the path to be reached when performing the HTTP get
+  path: /actuator/health
+
+ords:
+  ## @param ords.username sets the username to communicate with ORDS. If none is given, and it does not exist, a random one will be generated
+  username: ""
+  ## @param ords.password sets the password to communicate with ORDS. If none is given, and it does not exist, a random one will be generated
+  password: ""
+  ## @param ords.baseurl sets the baseurl to base url with ORDS. If none is given, and it does not exist, a random one will be generated
+  baseurl: ""
+  ## @param ords.getDisputesEndpoint sets the endpoint to communicate with ORDS. If none is given, and it does not exist, a random one will be generated
+  getDisputesEndpoint: ""
+  ## @param ords.createCitationDisputeSecret
+  createCitationDisputeSecret: ""
+  ## @param ords.updateCitationDisputeSecret
+  updateCitationDisputeSecret: ""
+  ## @param ords.notifyProcessStatusEndpoint
+  notifyProcessStatusEndpoint: ""
+
+  ## @param ords.connect_timeout
+  connect_timeout: 30000
+  ## @param ords.read_timeout
+  read_timeout: 30000
+
+keycloak:
+  ## @param keycloak.realm
+  realm: ""
+  ## @param keycloak.authServerUrl
+  authServerUrl: ""
+  ## @param keycloak.sslRequired
+  sslRequired: "external"
+  ## @param keycloak.resource
+  resource: ""
+  ## @param keycloak.credentialsSecret
+  credentialsSecret: ""
+
+splunk:
+  ## @param splunk.url
+  url: ""
+  ## @param splunk.token
+  token: ""

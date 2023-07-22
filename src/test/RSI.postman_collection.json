@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "52af5405-65b4-46e0-b55e-370b0be30fa8",
+		"name": "RSI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "disputeCourtResults localhost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/disputeCourtResults",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"disputeCourtResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notifyProcessStatus localhost",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"activityStatus\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/notifyProcessStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"notifyProcessStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCitationDispute localhost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"activityDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"activityIdentification\": {\r\n        \"identificationID\": \"EZ04500019\"\r\n    },\r\n    \"citationFineAmount\": {\r\n        \"amount\": 138.00\r\n    },\r\n    \"citationIssuedLocation\": {\r\n        \"address\": {\r\n            \"locationCityName\": \"VICTORIA\"\r\n        }\r\n    },\r\n    \"citationIssuingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"9804161\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"RHODES, CHRISTOPHER\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubject\": {\r\n        \"subjectIdentification\": {\r\n            \"identificationCategoryCode\": \"I\",\r\n            \"identificationID\": \"451450\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personBirthDate\": {\r\n                \"dateText\": \"1992-01-05\"\r\n            },\r\n            \"personName\": {\r\n                \"personGivenName\": \"CHARLES\",\r\n                \"personGivenName2\": \"HARRY\",\r\n                \"personGivenName3\": \"SAMIR\",\r\n                \"personSurName\": \"HUNTER\"\r\n            },\r\n            \"personSexCode\": \"M\"\r\n        },\r\n        \"roleOfOrganization\": {\r\n            \"organizationName\": \"Org\"\r\n        }\r\n    },\r\n    \"citationSubjectDriverLicense\": {\r\n        \"driverLicenseIdentification\": {\r\n            \"identificationID\": \"1700202\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubjectMailingAddress\": {\r\n        \"addressLine1\": \"1288 Flying Scotsman Road\",\r\n        \"addressLine2\": \"Highlands\",\r\n        \"addressLine3\": \"ADDR3\",\r\n        \"locationCanadianProvinceCode\": \"BC\",\r\n        \"locationCityName\": \"VICTORIA\",\r\n        \"locationCountryCode\": \"CAN\",\r\n        \"locationPostalCode\": \"H1H2H3\"\r\n    },\r\n    \"citationViolation\": {\r\n        \"activityIdentification\": {\r\n            \"identificationID\": \"1\"\r\n        },\r\n        \"disputeType\": \"A\",\r\n        \"icbcCompressedSection\": \"13.1B\",\r\n        \"icbcViolatedAct\": \"MVA\",\r\n        \"violatedAct\": \"MVA\",\r\n        \"violatedClause\": \"123\",\r\n        \"violatedParagraph\": \"2\",\r\n        \"violatedSection\": \"13\",\r\n        \"violatedSubParagraph\": \"b\",\r\n        \"violatedSubSection\": \"1\",\r\n        \"incidentTrafficAccidentInvolvedIndicator\": false\r\n    },\r\n    \"citationWitnessingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"ZZ0025\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"GUPTA, VIVEK\"\r\n            }\r\n        }\r\n    },\r\n\r\n    \"courtHearingLocation\": {\r\n        \"locationIdentification\": {\r\n            \"identificationID\": \"1201\"\r\n        },\r\n        \"address\": {\r\n            \"addressFullText\": \"VANCOUVER, B.C.\"\r\n        }\r\n    },\r\n    \"disputeFilingDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"serviceDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"violationReportDocument\": {\r\n        \"documentBinary\": {\r\n            \"base64BinaryObject\": \"PD94bWwgdmVyc2lvbj0\"\r\n        },\r\n        \"documentSoftware\": {\r\n            \"softwareVersionNumberID\": \"1.0\"\r\n        },\r\n        \"certificateOfServiceFormNumber\": \"MV6010(102018)\",\r\n        \"electronicViolationTicketingFormNumber\": \"MV6000E(102018)\"\r\n    },\r\n    \r\n    \"citationAgency\": {\r\n        \"organizationIdentification\": {\r\n            \"identificationID\": \"402\"\r\n        },\r\n        \"organizationName\": \"VICTORIA CITY MUN\"\r\n    },\r\n    \r\n    \"vehicle\": {\r\n        \"itemColorDescriptionText\": \"GREEN\",\r\n        \"vehicleMakeCode\": \"SD\",\r\n        \"itemOwner\": {\r\n            \"entityPerson\": {\r\n                \"personName\": {\r\n                    \"personFullName\": \"MOSS, STERLING\"\r\n                }\r\n            }\r\n        },\r\n        \"vehicleIdentification\": {\r\n            \"identificationID\": \"BJV 896\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/citations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"citations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCitationDispute localhost",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"activityDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"activityIdentification\": {\r\n        \"identificationID\": \"EZ04500019\"\r\n    },\r\n    \"citationFineAmount\": {\r\n        \"amount\": 138.00\r\n    },\r\n    \"citationIssuedLocation\": {\r\n        \"address\": {\r\n            \"locationCityName\": \"VICTORIA\"\r\n        }\r\n    },\r\n    \"citationIssuingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"9804161\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"RHODES, CHRISTOPHER\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubject\": {\r\n        \"subjectIdentification\": {\r\n            \"identificationCategoryCode\": \"I\",\r\n            \"identificationID\": \"451450\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personBirthDate\": {\r\n                \"dateText\": \"1992-01-05\"\r\n            },\r\n            \"personName\": {\r\n                \"personGivenName\": \"CHARLES\",\r\n                \"personGivenName2\": \"HARRY\",\r\n                \"personGivenName3\": \"SAMIR\",\r\n                \"personSurName\": \"HUNTER\"\r\n            },\r\n            \"personSexCode\": \"M\"\r\n        },\r\n        \"roleOfOrganization\": {\r\n            \"organizationName\": \"Org\"\r\n        }\r\n    },\r\n    \"citationSubjectDriverLicense\": {\r\n        \"driverLicenseIdentification\": {\r\n            \"identificationID\": \"1700202\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubjectMailingAddress\": {\r\n        \"addressLine1\": \"1288 Flying Scotsman Road\",\r\n        \"addressLine2\": \"Highlands\",\r\n        \"addressLine3\": \"ADDR3\",\r\n        \"locationCanadianProvinceCode\": \"BC\",\r\n        \"locationCityName\": \"VICTORIA\",\r\n        \"locationCountryCode\": \"CAN\",\r\n        \"locationPostalCode\": \"H1H2H3\"\r\n    },\r\n    \"citationViolation\": {\r\n        \"activityIdentification\": {\r\n            \"identificationID\": \"1\"\r\n        },\r\n        \"disputeType\": \"A\",\r\n        \"icbcCompressedSection\": \"13.1B\",\r\n        \"icbcViolatedAct\": \"MVA\",\r\n        \"violatedAct\": \"MVA\",\r\n        \"violatedClause\": \"123\",\r\n        \"violatedParagraph\": \"2\",\r\n        \"violatedSection\": \"13\",\r\n        \"violatedSubParagraph\": \"b\",\r\n        \"violatedSubSection\": \"1\",\r\n        \"incidentTrafficAccidentInvolvedIndicator\": false\r\n    },\r\n    \"citationWitnessingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"ZZ0025\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"GUPTA, VIVEK\"\r\n            }\r\n        }\r\n    },\r\n\r\n    \"courtHearingLocation\": {\r\n        \"locationIdentification\": {\r\n            \"identificationID\": \"1201\"\r\n        },\r\n        \"address\": {\r\n            \"addressFullText\": \"VANCOUVER, B.C.\"\r\n        }\r\n    },\r\n    \"disputeFilingDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"serviceDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"violationReportDocument\": {\r\n        \"documentBinary\": {\r\n            \"base64BinaryObject\": \"PD94bWwgdmVyc2lvbj0\"\r\n        },\r\n        \"documentSoftware\": {\r\n            \"softwareVersionNumberID\": \"1.0\"\r\n        },\r\n        \"certificateOfServiceFormNumber\": \"MV6010(102018)\",\r\n        \"electronicViolationTicketingFormNumber\": \"MV6000E(102018)\"\r\n    },\r\n    \r\n    \"citationAgency\": {\r\n        \"organizationIdentification\": {\r\n            \"identificationID\": \"402\"\r\n        },\r\n        \"organizationName\": \"VICTORIA CITY MUN\"\r\n    },\r\n    \r\n    \"vehicle\": {\r\n        \"itemColorDescriptionText\": \"GREEN\",\r\n        \"vehicleMakeCode\": \"SD\",\r\n        \"itemOwner\": {\r\n            \"entityPerson\": {\r\n                \"personName\": {\r\n                    \"personFullName\": \"MOSS, STERLING\"\r\n                }\r\n            }\r\n        },\r\n        \"vehicleIdentification\": {\r\n            \"identificationID\": \"BJV 896\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/citations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"citations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actuator health localhost",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/actuator/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "disputeCourtResults",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api-base-url}}/disputeCourtResults",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"disputeCourtResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notifyProcessStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "true",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"activityStatus\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-base-url}}/notifyProcessStatus",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"notifyProcessStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCitationDispute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"activityDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"activityIdentification\": {\r\n        \"identificationID\": \"EZ04500019\"\r\n    },\r\n    \"citationFineAmount\": {\r\n        \"amount\": 138.00\r\n    },\r\n    \"citationIssuedLocation\": {\r\n        \"address\": {\r\n            \"locationCityName\": \"VICTORIA\"\r\n        }\r\n    },\r\n    \"citationIssuingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"9804161\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"RHODES, CHRISTOPHER\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubject\": {\r\n        \"subjectIdentification\": {\r\n            \"identificationCategoryCode\": \"I\",\r\n            \"identificationID\": \"451450\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personBirthDate\": {\r\n                \"dateText\": \"1992-01-05\"\r\n            },\r\n            \"personName\": {\r\n                \"personGivenName\": \"CHARLES\",\r\n                \"personGivenName2\": \"HARRY\",\r\n                \"personGivenName3\": \"SAMIR\",\r\n                \"personSurName\": \"HUNTER\"\r\n            },\r\n            \"personSexCode\": \"M\"\r\n        },\r\n        \"roleOfOrganization\": {\r\n            \"organizationName\": \"Org\"\r\n        }\r\n    },\r\n    \"citationSubjectDriverLicense\": {\r\n        \"driverLicenseIdentification\": {\r\n            \"identificationID\": \"1700202\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubjectMailingAddress\": {\r\n        \"addressLine1\": \"1288 Flying Scotsman Road\",\r\n        \"addressLine2\": \"Highlands\",\r\n        \"addressLine3\": \"ADDR3\",\r\n        \"locationCanadianProvinceCode\": \"BC\",\r\n        \"locationCityName\": \"VICTORIA\",\r\n        \"locationCountryCode\": \"CAN\",\r\n        \"locationPostalCode\": \"H1H2H3\"\r\n    },\r\n    \"citationViolation\": {\r\n        \"activityIdentification\": {\r\n            \"identificationID\": \"1\"\r\n        },\r\n        \"disputeType\": \"A\",\r\n        \"icbcCompressedSection\": \"13.1B\",\r\n        \"icbcViolatedAct\": \"MVA\",\r\n        \"violatedAct\": \"MVA\",\r\n        \"violatedClause\": \"123\",\r\n        \"violatedParagraph\": \"2\",\r\n        \"violatedSection\": \"13\",\r\n        \"violatedSubParagraph\": \"b\",\r\n        \"violatedSubSection\": \"1\",\r\n        \"incidentTrafficAccidentInvolvedIndicator\": false\r\n    },\r\n    \"citationWitnessingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"ZZ0025\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"GUPTA, VIVEK\"\r\n            }\r\n        }\r\n    },\r\n\r\n    \"courtHearingLocation\": {\r\n        \"locationIdentification\": {\r\n            \"identificationID\": \"1201\"\r\n        },\r\n        \"address\": {\r\n            \"addressFullText\": \"VANCOUVER, B.C.\"\r\n        }\r\n    },\r\n    \"disputeFilingDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"serviceDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"violationReportDocument\": {\r\n        \"documentBinary\": {\r\n            \"base64BinaryObject\": \"PD94bWwgdmVyc2lvbj0\"\r\n        },\r\n        \"documentSoftware\": {\r\n            \"softwareVersionNumberID\": \"1.0\"\r\n        },\r\n        \"certificateOfServiceFormNumber\": \"MV6010(102018)\",\r\n        \"electronicViolationTicketingFormNumber\": \"MV6000E(102018)\"\r\n    },\r\n    \r\n    \"citationAgency\": {\r\n        \"organizationIdentification\": {\r\n            \"identificationID\": \"402\"\r\n        },\r\n        \"organizationName\": \"VICTORIA CITY MUN\"\r\n    },\r\n    \r\n    \"vehicle\": {\r\n        \"itemColorDescriptionText\": \"GREEN\",\r\n        \"vehicleMakeCode\": \"SD\",\r\n        \"itemOwner\": {\r\n            \"entityPerson\": {\r\n                \"personName\": {\r\n                    \"personFullName\": \"MOSS, STERLING\"\r\n                }\r\n            }\r\n        },\r\n        \"vehicleIdentification\": {\r\n            \"identificationID\": \"BJV 896\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-base-url}}/citations/",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"citations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCitationDispute",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"activityDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"activityIdentification\": {\r\n        \"identificationID\": \"EZ04500019\"\r\n    },\r\n    \"citationFineAmount\": {\r\n        \"amount\": 138.00\r\n    },\r\n    \"citationIssuedLocation\": {\r\n        \"address\": {\r\n            \"locationCityName\": \"VICTORIA\"\r\n        }\r\n    },\r\n    \"citationIssuingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"9804161\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"RHODES, CHRISTOPHER\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubject\": {\r\n        \"subjectIdentification\": {\r\n            \"identificationCategoryCode\": \"I\",\r\n            \"identificationID\": \"451450\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personBirthDate\": {\r\n                \"dateText\": \"1992-01-05\"\r\n            },\r\n            \"personName\": {\r\n                \"personGivenName\": \"CHARLES\",\r\n                \"personGivenName2\": \"HARRY\",\r\n                \"personGivenName3\": \"SAMIR\",\r\n                \"personSurName\": \"HUNTER\"\r\n            },\r\n            \"personSexCode\": \"M\"\r\n        },\r\n        \"roleOfOrganization\": {\r\n            \"organizationName\": \"Org\"\r\n        }\r\n    },\r\n    \"citationSubjectDriverLicense\": {\r\n        \"driverLicenseIdentification\": {\r\n            \"identificationID\": \"1700202\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    },\r\n    \"citationSubjectMailingAddress\": {\r\n        \"addressLine1\": \"1288 Flying Scotsman Road\",\r\n        \"addressLine2\": \"Highlands\",\r\n        \"addressLine3\": \"ADDR3\",\r\n        \"locationCanadianProvinceCode\": \"BC\",\r\n        \"locationCityName\": \"VICTORIA\",\r\n        \"locationCountryCode\": \"CAN\",\r\n        \"locationPostalCode\": \"H1H2H3\"\r\n    },\r\n    \"citationViolation\": {\r\n        \"activityIdentification\": {\r\n            \"identificationID\": \"1\"\r\n        },\r\n        \"disputeType\": \"A\",\r\n        \"icbcCompressedSection\": \"13.1B\",\r\n        \"icbcViolatedAct\": \"MVA\",\r\n        \"violatedAct\": \"MVA\",\r\n        \"violatedClause\": \"123\",\r\n        \"violatedParagraph\": \"2\",\r\n        \"violatedSection\": \"13\",\r\n        \"violatedSubParagraph\": \"b\",\r\n        \"violatedSubSection\": \"1\",\r\n        \"incidentTrafficAccidentInvolvedIndicator\": false\r\n    },\r\n    \"citationWitnessingOfficial\": {\r\n        \"enforcementOfficialBadgeIdentification\": {\r\n            \"identificationID\": \"ZZ0025\"\r\n        },\r\n        \"roleOfPerson\": {\r\n            \"personName\": {\r\n                \"personFullName\": \"GUPTA, VIVEK\"\r\n            }\r\n        }\r\n    },\r\n\r\n    \"courtHearingLocation\": {\r\n        \"locationIdentification\": {\r\n            \"identificationID\": \"1201\"\r\n        },\r\n        \"address\": {\r\n            \"addressFullText\": \"VANCOUVER, B.C.\"\r\n        }\r\n    },\r\n    \"disputeFilingDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"serviceDate\": {\r\n        \"dateText\": \"2019-01-11\"\r\n    },\r\n    \"violationReportDocument\": {\r\n        \"documentBinary\": {\r\n            \"base64BinaryObject\": \"PD94bWwgdmVyc2lvbj0\"\r\n        },\r\n        \"documentSoftware\": {\r\n            \"softwareVersionNumberID\": \"1.0\"\r\n        },\r\n        \"certificateOfServiceFormNumber\": \"MV6010(102018)\",\r\n        \"electronicViolationTicketingFormNumber\": \"MV6000E(102018)\"\r\n    },\r\n    \r\n    \"citationAgency\": {\r\n        \"organizationIdentification\": {\r\n            \"identificationID\": \"402\"\r\n        },\r\n        \"organizationName\": \"VICTORIA CITY MUN\"\r\n    },\r\n    \r\n    \"vehicle\": {\r\n        \"itemColorDescriptionText\": \"GREEN\",\r\n        \"vehicleMakeCode\": \"SD\",\r\n        \"itemOwner\": {\r\n            \"entityPerson\": {\r\n                \"personName\": {\r\n                    \"personFullName\": \"MOSS, STERLING\"\r\n                }\r\n            }\r\n        },\r\n        \"vehicleIdentification\": {\r\n            \"identificationID\": \"BJV 896\",\r\n            \"identificationJurisdiction\": {\r\n                \"jurisdictionText\": \"BC\"\r\n            }\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-base-url}}/citations/",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"citations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vticbcfinddata ORDS",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{ords-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{ords-username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ords-base-url}}/vticbcfinddata",
+					"host": [
+						"{{ords-base-url}}"
+					],
+					"path": [
+						"vticbcfinddata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vticbcfindresponse ORDS",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{ords-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{ords-username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"p_success\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ords-base-url}}/vticbcfindresponse",
+					"host": [
+						"{{ords-base-url}}"
+					],
+					"path": [
+						"vticbcfindresponse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vtDispute ORDS",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{ords-password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{ords-username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ords-base-url}}/vtdispute",
+					"host": [
+						"{{ords-base-url}}"
+					],
+					"path": [
+						"vtdispute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "password",
+				"value": "{{keycloak-password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{keycloak-username}}",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{keycloak-client-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{keycloak-client-id}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "{{keycloak-base-url}}/keycloak/auth/realms/isb-api/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "password_credentials",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "bearer",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,17 @@
+name: Pull Request Workflow
+
+on:
+  - pull_request
+
+jobs:
+  unit-test:
+    uses: SierraSystems/reusable-workflows/.github/workflows/java-unit-tests.yml@main
+    with:
+      working_directory: '.'
+
+  build-image:
+    uses: SierraSystems/reusable-workflows/.github/workflows/docker-build-image.yml@main
+    with:
+      app_name: 'justin-disputes-api'
+      app_version: 'latest'
+      working_directory: '.'

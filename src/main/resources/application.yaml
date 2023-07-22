@@ -1,0 +1,32 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  server:
+    port: ${MANAGEMENT_SERVER_PORT:9999}
+
+spring:
+  jackson:
+    default-property-inclusion: non-null
+
+ords:
+  username: ${ORDS_USERNAME}
+  password: ${ORDS_PASSWORD}
+  baseurl: ${ORDS_BASE_URL}
+  getDisputesEndpoint: ${ORDS_GET_DISPUTES_ENDPOINT}
+  notifyProcessStatusEndpoint: ${ORDS_NOTIFY_PROCESS_STATUS_ENDPOINT}
+  createCitationDisputeEndpoint: ${ORDS_CREATE_CITATION_DISPUTE_ENDPOINT}
+  updateCitationDisputeEndpoint: ${ORDS_UPDATE_CITATION_DISPUTE_ENDPOINT}
+  timeout:
+    connect: ${ORDS_CONNECT_TIMEOUT:30000}
+    read: ${ORDS_READ_TIMEOUT:30000}
+
+keycloak:
+  realm: ${KEYCLOAK_REALM}
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL}
+  ssl-required: ${KEYCLOAK_SSL_REQUIRED:external}
+  resource: ${KEYCLOAK_RESOURCE}
+  credentials:
+    secret: ${KEYCLOAK_CREDENTIALS_SECRET}
+  use-resource-role-mappings: true
+  bearer-only: true

@@ -1,0 +1,13 @@
+image:
+  pullPolicy: Always
+  tag: "latest"
+
+forceRedeploy: true
+
+resources:
+ requests:
+   cpu: 200m
+   memory: 256Mi
+ limits:
+   cpu: 400m
+   memory: 512Mi

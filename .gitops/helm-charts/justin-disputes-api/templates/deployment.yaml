@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "justin-disputes-api.fullname" . }}
+  labels:
+    {{- include "justin-disputes-api.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "justin-disputes-api.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.forceRedeploy }}
+        timestamp: {{ now | quote }}
+      {{- end }}
+      labels:
+        {{- include "justin-disputes-api.selectorLabels" . | nindent 8 }}
+    spec:
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+            - name: health
+              containerPort: {{ .Values.healthPort }}
+              protocol: TCP
+          startupProbe:
+            initialDelaySeconds: 30
+            failureThreshold: 6
+            periodSeconds: 10
+            tcpSocket:
+              port: http
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probe.path }}
+              port: health
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probe.path }}
+              port: health
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "justin-disputes-api.fullname" . }}-config
+            - secretRef:
+                name: {{ include "justin-disputes-api.fullname" . }}-ords-secret
+            - secretRef:
+                name: {{ include "justin-disputes-api.fullname" . }}-keycloak-secret
+            - secretRef:
+                name: {{ include "justin-disputes-api.fullname" . }}-splunk-secret

@@ -1,0 +1,26 @@
+name: Justin Disputes API - Promote to Prod
+on:
+  workflow_dispatch:
+    inputs:
+      source_image_tag:
+        required: true
+        description: What is the image tag that is going to be promoted?
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy onto Openshift
+    uses: SierraSystems/reusable-workflows/.github/workflows/helm-deploy.yml@main
+    with:
+      env: 'prod'
+      working_directory: '.gitops/helm-charts/justin-disputes-api'
+      app_name: 'justin-disputes-api'
+      values-file: '../prod-values.yaml'
+    secrets:
+      openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+      openshift_token: ${{ secrets.OPENSHIFT_PIPELINE_TOKEN_PROD }}
+      openshift_namespace: "${{ secrets.OPENSHIFT_LICENSE_PLATE }}-prod"
+      values: |
+        image.repository=${{ secrets.OPENSHIFT_INTERNAL_REPOSITORY }}/${{ secrets.OPENSHIFT_LICENSE_PLATE }}-tools/justin-disputes-api
+        image.tag=${{ github.event.inputs.source_image_tag }}
+        route.host=justin-disputes-api-service-${{ secrets.OPENSHIFT_LICENSE_PLATE }}-prod.${{ secrets.OPENSHIFT_SILVER_ROUTE_URL }}

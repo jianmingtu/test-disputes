@@ -1,0 +1,490 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+host: justin-disputes-api-wuboml-dev.apps.silver.devops.bcgov
+basePath: /
+tags:
+  - name: citation-disputes-controller
+    description: Citation Disputes API
+paths:
+  /api/v1/citations:
+    post:
+      tags:
+        - citations
+      summary: Create a Citation Dispute
+      description: Creates a citation dispute
+      operationId: createCitationDispute
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: citationType
+          description: citationType
+          required: true
+          schema:
+            $ref: '#/definitions/CitationAugmentationType'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CitationAugmentationType'
+        '201':
+          description: Citation Dispute Created
+          schema:
+            $ref: '#/definitions/CitationAugmentationType'
+        '400':
+          description: Invalid Citation Dispute
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    put:
+      tags:
+        - citations
+      summary: Update a Citation Dispute
+      description: Updates a citation dispute
+      operationId: updateCitationDispute
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: citationType
+          description: citationType
+          required: true
+          schema:
+            $ref: '#/definitions/CitationAugmentationType'
+      responses:
+        '200':
+          description: Citation Dispute Updated
+          schema:
+            $ref: '#/definitions/CitationAugmentationType'
+        '201':
+          description: Created
+        '400':
+          description: Invalid Citation Dispute
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/v1/disputeCourtResults:
+    get:
+      tags:
+        - citation-disputes-controller
+      summary: Get dispute court results
+      operationId: getDisputeCourtResults
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Results retrieved successfully
+          schema:
+            $ref: '#/definitions/CourtResults'
+        '204':
+          description: No new court results to return
+          schema:
+            $ref: '#/definitions/CourtResults'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/v1/notifyProcessStatus:
+    post:
+      tags:
+        - citation-disputes-controller
+      summary: Inform Justin whether or not the data was processed successfully
+      operationId: notifyProcessStatus
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: processStatus
+          description: processStatus
+          required: true
+          schema:
+            $ref: '#/definitions/ProcessStatus'
+      responses:
+        '200':
+          description: Post successful
+          schema:
+            type: object
+        '201':
+          description: Created
+        '400':
+          description: Post unsuccessful
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  AddressType:
+    type: object
+    properties:
+      addressFullText:
+        type: string
+      addressLine1:
+        type: string
+      addressLine2:
+        type: string
+      addressLine3:
+        type: string
+      locationCanadianProvinceCode:
+        type: string
+      locationCityName:
+        type: string
+      locationCountryCode:
+        type: string
+      locationCountryName:
+        type: string
+      locationPostalCode:
+        type: string
+    title: AddressType
+  AmountType:
+    type: object
+    properties:
+      amount:
+        type: number
+        format: double
+      currencyText:
+        type: string
+    title: AmountType
+  BinaryType:
+    type: object
+    properties:
+      base64BinaryObject:
+        type: string
+      binaryDescriptionText:
+        type: string
+      binaryFormatStandardName:
+        type: string
+    title: BinaryType
+  CitationAugmentationType:
+    type: object
+    properties:
+      activityDate:
+        $ref: '#/definitions/DateType'
+      activityIdentification:
+        $ref: '#/definitions/IdentificationType'
+      activityStatus:
+        $ref: '#/definitions/StatusType'
+      citationAgency:
+        $ref: '#/definitions/OrganizationType'
+      citationFineAmount:
+        $ref: '#/definitions/AmountType'
+      citationIssuedLocation:
+        $ref: '#/definitions/LocationType'
+      citationIssuingOfficial:
+        $ref: '#/definitions/EnforcementOfficialType'
+      citationSubject:
+        $ref: '#/definitions/SubjectType'
+      citationSubjectDriverLicense:
+        $ref: '#/definitions/DriverLicenseType'
+      citationSubjectMailingAddress:
+        $ref: '#/definitions/AddressType'
+      citationViolation:
+        $ref: '#/definitions/IncidentAugmentationType'
+      citationWitnessingOfficial:
+        $ref: '#/definitions/EnforcementOfficialType'
+      courtHearingLocation:
+        $ref: '#/definitions/LocationType'
+      disputeFilingDate:
+        $ref: '#/definitions/DateType'
+      noticeOfDisputeAddress:
+        $ref: '#/definitions/AddressType'
+      serviceDate:
+        $ref: '#/definitions/DateType'
+      vehicle:
+        $ref: '#/definitions/VehicleType'
+      violationReportDocument:
+        $ref: '#/definitions/DocumentType'
+    title: CitationAugmentationType
+  CourtResults:
+    type: object
+    properties:
+      itemQuantity:
+        type: integer
+        format: int32
+      verdicts:
+        type: array
+        items:
+          $ref: '#/definitions/Verdicts'
+    title: CourtResults
+  DateType:
+    type: object
+    properties:
+      date:
+        type: string
+        format: date-time
+      dateText:
+        type: string
+      dateTime:
+        type: string
+        format: date-time
+    title: DateType
+  DocumentType:
+    type: object
+    properties:
+      certificateOfServiceFormNumber:
+        type: string
+      documentBinary:
+        $ref: '#/definitions/BinaryType'
+      documentDescriptionText:
+        type: string
+      documentFileName:
+        type: string
+      documentFormatText:
+        type: string
+      documentSoftware:
+        $ref: '#/definitions/SoftwareDetailType'
+      documentSource:
+        $ref: '#/definitions/EntityType'
+      documentSourceText:
+        type: string
+      documentVersion:
+        type: string
+      electronicViolationTicketingFormNumber:
+        type: string
+    title: DocumentType
+  DriverLicenseType:
+    type: object
+    properties:
+      driverLicenseExpirationDate:
+        $ref: '#/definitions/DateType'
+      driverLicenseIdentification:
+        $ref: '#/definitions/IdentificationType'
+      driverLicenseIssueDate:
+        $ref: '#/definitions/DateType'
+    title: DriverLicenseType
+  EnforcementOfficialType:
+    type: object
+    properties:
+      enforcementOfficialBadgeIdentification:
+        $ref: '#/definitions/IdentificationType'
+      roleOfPerson:
+        $ref: '#/definitions/PersonType'
+    title: EnforcementOfficialType
+  EntityType:
+    type: object
+    properties:
+      entityOrganization:
+        $ref: '#/definitions/OrganizationType'
+      entityPerson:
+        $ref: '#/definitions/PersonType'
+    title: EntityType
+  IdentificationType:
+    type: object
+    properties:
+      identificationCategoryCode:
+        type: string
+      identificationCategoryDescriptionText:
+        type: string
+      identificationCategoryText:
+        type: string
+      identificationID:
+        type: string
+      identificationJurisdiction:
+        $ref: '#/definitions/JurisdictionType'
+    title: IdentificationType
+  IncidentAugmentationType:
+    type: object
+    properties:
+      activityDate:
+        $ref: '#/definitions/DateType'
+      activityIdentification:
+        $ref: '#/definitions/IdentificationType'
+      activityStatus:
+        $ref: '#/definitions/StatusType'
+      disputeType:
+        type: string
+      icbcCompressedSection:
+        type: string
+      icbcViolatedAct:
+        type: string
+      incidentTrafficAccidentInvolvedIndicator:
+        type: boolean
+      violatedAct:
+        type: string
+      violatedClause:
+        type: string
+      violatedParagraph:
+        type: string
+      violatedSection:
+        type: string
+      violatedSubParagraph:
+        type: string
+      violatedSubSection:
+        type: string
+    title: IncidentAugmentationType
+  JurisdictionType:
+    type: object
+    properties:
+      jurisdictionText:
+        type: string
+      locationCanadianProvinceCode:
+        type: string
+      locationCityName:
+        type: string
+      locationCountryCode:
+        type: string
+      locationCountryName:
+        type: string
+    title: JurisdictionType
+  LocationType:
+    type: object
+    properties:
+      address:
+        $ref: '#/definitions/AddressType'
+      locationIdentification:
+        $ref: '#/definitions/IdentificationType'
+      locationName:
+        type: string
+    title: LocationType
+  OrganizationType:
+    type: object
+    properties:
+      organizationAbbreviationText:
+        type: string
+      organizationActivityText:
+        type: string
+      organizationBranchName:
+        type: string
+      organizationIdentification:
+        $ref: '#/definitions/IdentificationType'
+      organizationLocation:
+        $ref: '#/definitions/LocationType'
+      organizationName:
+        type: string
+    title: OrganizationType
+  PersonNameType:
+    type: object
+    properties:
+      personFullName:
+        type: string
+      personGivenName:
+        type: string
+      personGivenName2:
+        type: string
+      personGivenName3:
+        type: string
+      personMaidenName:
+        type: string
+      personMiddleName:
+        type: string
+      personNamePrefixText:
+        type: string
+      personSurName:
+        type: string
+    title: PersonNameType
+  PersonType:
+    type: object
+    properties:
+      personAgeDescriptionText:
+        type: string
+      personBirthDate:
+        $ref: '#/definitions/DateType'
+      personName:
+        $ref: '#/definitions/PersonNameType'
+      personSexCode:
+        type: string
+    title: PersonType
+  ProcessStatus:
+    type: object
+    properties:
+      activityStatus:
+        type: boolean
+    title: ProcessStatus
+  SoftwareDetailType:
+    type: object
+    properties:
+      softwareVendorNameText:
+        type: string
+      softwareVersionNumberID:
+        type: string
+    title: SoftwareDetailType
+  StatusType:
+    type: object
+    properties:
+      statusCommentText:
+        type: string
+      statusDate:
+        $ref: '#/definitions/DateType'
+      statusDescriptionText:
+        type: string
+      statusIssuerIdentification:
+        $ref: '#/definitions/IdentificationType'
+      statusIssuerText:
+        type: string
+      statusText:
+        type: string
+    title: StatusType
+  SubjectType:
+    type: object
+    properties:
+      roleOfOrganization:
+        $ref: '#/definitions/OrganizationType'
+      roleOfPerson:
+        $ref: '#/definitions/PersonType'
+      subjectIdentification:
+        $ref: '#/definitions/IdentificationType'
+    title: SubjectType
+  VehicleType:
+    type: object
+    properties:
+      itemColorDescriptionText:
+        type: string
+      itemDescriptionText:
+        type: string
+      itemMakeName:
+        type: string
+      itemModelName:
+        type: string
+      itemModelYearDate:
+        type: string
+      itemName:
+        type: integer
+        format: int32
+      itemOwner:
+        $ref: '#/definitions/EntityType'
+      vehicleIdentification:
+        $ref: '#/definitions/IdentificationType'
+      vehicleMakeCode:
+        type: string
+    title: VehicleType
+  Verdicts:
+    type: object
+    properties:
+      activityIdentification:
+        type: string
+      contraventionNumber:
+        type: string
+      verdictDate:
+        type: string
+      verdictDescriptionText:
+        type: string
+      verdictDispositionName:
+        type: string
+    title: Verdicts
