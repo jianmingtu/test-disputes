@@ -3,13 +3,8 @@
 name: Build & Vulnerability Scan using Trivy Scanner
 
 on:
-  push:
-    branches: [ main, release/* ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main, release/*]
-  workflow_dispatch:
-    branches: [ main, release/*]
+  - pull_request
+  - push
 
 jobs:
   build-scan-image:
