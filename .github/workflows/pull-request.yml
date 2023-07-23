@@ -36,14 +36,14 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+          docker build -t test-disputes:latest .
 
       #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: docker.io/my-organization/my-app:${{ github.sha }}
+          image-ref: test-disputes:latest
           format: sarif
           output: trivy-results.sarif
           exit-code: 1
