@@ -1,21 +1,15 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# This workflow is used to build & scan image using trivy vulnerability scanner and upload the results to github security tab
 
-name: trivy
+name: Build & Vulnerability Scan using Trivy Scanner
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, release/*, feature/* ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
-  schedule:
-    - cron: '27 18 * * 1'
-
-permissions:
-  contents: read
+    branches: [ main, release/*, feature/*]
+  workflow_dispatch:
+    branches: [ main, release/*, feature/*]
 
 jobs:
   build:
@@ -44,16 +38,21 @@ jobs:
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
 
+      #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+        uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+          scan-type: image
+          image-ref: docker.io/my-organization/my-app:${{ github.sha }}
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: 1
+          ignore-unfixed: true
+          severity: HIGH,CRITICAL
 
+      #Upload results to the Github security tab.
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
+        if: always()
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: trivy-results.sarif
