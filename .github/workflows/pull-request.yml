@@ -39,7 +39,7 @@ jobs:
           docker build -t test-disputes:latest .
 
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@0.11.1
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
           image-ref: test-disputes:latest
