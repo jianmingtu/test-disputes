@@ -41,6 +41,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.11.1
       with:
+        scan-type: image
         image-ref: test-disputes:latest
         exit-code: '1'
         ignore-unfixed: true
