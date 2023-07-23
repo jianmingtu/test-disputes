@@ -1,58 +1,12 @@
-# This workflow is used to build & scan image using trivy vulnerability scanner and upload the results to github security tab
-
-name: Build & Vulnerability Scan using Trivy Scanner
+name: Pull Request Workflow
 
 on:
-  push:
-    branches: [ main, release/*, feature/* ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ main, release/*, feature/*]
-  workflow_dispatch:
-    branches: [ main, release/*, feature/*]
+  - pull_request
 
 jobs:
-  build-scan-image:
-    name: Build & Scan Image
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Set up JDK build environment
-      - name: Set up JDK 8
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: 8
-
-      # Runs build steps
-      - name: Maven Package
-        run: mvn -ntp clean package
-
-      - name: Build an image from Dockerfile
-        env:
-          COMPOSE_DOCKER_CLI_BUILD: 1
-          DOCKER_BUILDKIT: 1
-        run: |
-          docker build -t docker.io/test-disputes/test-disputes:${{ github.sha }} .
-
-      #Run Vulnerability Scan usinig Trivy scanner
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: image
-          image-ref: docker.io/test-disputes/test-disputes:${{ github.sha }}
-          format: sarif
-          output: trivy-results.sarif
-          exit-code: 1
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
-
-      #Upload results to the Github security tab.
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
-        if: always()
-        with:
-          sarif_file: trivy-results.sarif
+  build-image:
+    uses: jianmingtu/test-disputes/.github/workflows/docker-build-image.yml@main
+    with:
+      app_name: 'justin-disputes-api'
+      app_version: 'latest'
+      working_directory: '.'
