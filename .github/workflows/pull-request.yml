@@ -32,16 +32,27 @@ jobs:
       - name: Maven Package
         run: mvn -ntp clean package
 
+      - name: Maven Verify
+        run: mvn -ntp clean verify
+
+      - name: Build an image from Dockerfile
+        env:
+          COMPOSE_DOCKER_CLI_BUILD: 1
+          DOCKER_BUILDKIT: 1
+        run: |
+          docker build -t docker.io/test-disputes/justin-disputes-api:${{ github.sha }} .
+
+      #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.11.1
+        uses: aquasecurity/trivy-action@master
         with:
           scan-type: image
-          image-ref: test-disputes:latest
-          exit-code: 1
-          ignore-unfixed: true
+          image-ref: docker.io/test-disputes/justin-disputes-api:${{ github.sha }}
           format: sarif
           output: trivy-results.sarif
-          severity: CRITICAL,HIGH
+          exit-code: 1
+          ignore-unfixed: true
+          severity: HIGH,CRITICAL
 
       #Upload results to the Github security tab.
       - name: Upload Trivy scan results to GitHub Security tab
