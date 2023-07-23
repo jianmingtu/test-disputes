@@ -32,18 +32,14 @@ jobs:
       - name: Maven Package
         run: mvn -ntp clean package
 
-      - name: Build an image from Dockerfile
-        run: |
-          docker build -t test-disputes:latest .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.11.1
         with:
-          scan-type: image
           image-ref: test-disputes:latest
-          format: sarif
-          output: trivy-results.sarif
-          exit-code: 1
+          exit-code: '1'
           ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
           severity: CRITICAL,HIGH
 
       #Upload results to the Github security tab.
