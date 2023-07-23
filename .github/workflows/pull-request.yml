@@ -38,17 +38,15 @@ jobs:
         run: |
           docker build -t test-disputes:latest .
 
-      #Run Vulnerability Scan usinig Trivy scanner
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.11.1
         with:
-          scan-type: image
           image-ref: test-disputes:latest
-          format: sarif
-          output: trivy-results.sarif
-          exit-code: 1
+          exit-code: '1'
           ignore-unfixed: true
-          severity: HIGH,CRITICAL
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: CRITICAL,HIGH
 
       #Upload results to the Github security tab.
       - name: Upload Trivy scan results to GitHub Security tab
