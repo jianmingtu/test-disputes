@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>ca.bc.gov.iamp</groupId>
 	<artifactId>justin-disputes-api</artifactId>
-	<version>2.0.0</version>
 	<name>justin-disputes-api</name>
 	<description>Spring API for Justin Disputes</description>
 	<properties>
