@@ -30,3 +30,9 @@ keycloak:
     secret: ${KEYCLOAK_CREDENTIALS_SECRET}
   use-resource-role-mappings: true
   bearer-only: true
+
+cloud:
+  aws:
+    credentials:
+      access-key: ASIAT444444444444
+      secret-key: aCGuxeQMe222222222222222222
