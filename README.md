@@ -31,4 +31,4 @@ mvn clean verify
 |ORDS_CREATE_CITATION_DISPUTE_ENDPOINT | vtdispute |
 |ORDS_UPDATE_CITATION_DISPUTE_ENDPOINT | vtdisputestatus |
 
-For exact values of secrets not specified here, refer to the secrets for the Dev environment in OpenShift
+For exact values of secrets not specified here, refer to the secrets for the Dev environment in OpenShift.

@@ -30,3 +30,4 @@ keycloak:
     secret: ${KEYCLOAK_CREDENTIALS_SECRET}
   use-resource-role-mappings: true
   bearer-only: true
+
