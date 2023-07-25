@@ -15,5 +15,6 @@ jobs:
     uses: SierraSystems/reusable-workflows/.github/workflows/docker-build-image.yml@main
     with:
       app_name: 'justin-disputes-api'
+      app_version: 'latest'
       working_directory: '.'
 
