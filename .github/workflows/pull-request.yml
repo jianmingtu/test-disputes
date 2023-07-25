@@ -3,7 +3,9 @@
 name: Build & Vulnerability Scan using Trivy Scanner
 
 on:
-  - pull_request
+  workflow_dispatch: {}
+
+jobs:
 
   build-image:
     uses: SierraSystems/reusable-workflows/.github/workflows/docker-build-image.yml@main
@@ -11,3 +13,4 @@ on:
       app_name: 'justin-disputes-api'
       app_version: 'latest'
       working_directory: '.'
+
