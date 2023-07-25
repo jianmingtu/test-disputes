@@ -3,7 +3,7 @@
 name: Build & Vulnerability Scan using Trivy Scanner
 
 workflow_dispatch:
-  branches: [ main, feature/*]
+  branches: [ main, release/*]
 
 jobs:
   build-scan-image:
