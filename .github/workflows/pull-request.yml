@@ -3,8 +3,7 @@
 name: Build & Vulnerability Scan using Trivy Scanner
 
 on:
-  workflow_dispatch: {}
-
+  - pull_request
 
   build-image:
     uses: SierraSystems/reusable-workflows/.github/workflows/docker-build-image.yml@main
