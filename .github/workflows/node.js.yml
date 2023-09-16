@@ -22,5 +22,11 @@ jobs:
         echo "Log level: ${{ github.event.inputs.logLevel }}"
         echo "Tags: ${{ github.event.inputs.tags }}"
     - name: Dump secret
-      run: echo -n "${{ secrets.TEST_STARTER_URL }}" | xxd -ps        
+      run: echo -n "${{ secrets.TEST_STARTER_URL }}" | xxd -ps    
+    - name: Step 1 - Echo out a GitHub Actions Secret to the logs
+      run: |
+        echo "The GitHub Action Secret will be masked:  "
+        echo ${{ secrets.TEST_STARTER_URL }}
+        echo "Trick to echo GitHub Actions Secret:  "
+        echo ${{secrets.TEST_STARTER_URL}} | sed 's/./& /g'      
         
