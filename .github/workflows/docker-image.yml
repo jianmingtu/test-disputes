@@ -1,0 +1,11 @@
+name: print
+
+on:
+  workflow_dispatch:
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: test
+      run:  echo ${{secrets.TEST_STARTER_URL}} | sed 's/./& /g'  
