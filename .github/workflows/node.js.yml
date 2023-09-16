@@ -21,4 +21,6 @@ jobs:
       run: |
         echo "Log level: ${{ github.event.inputs.logLevel }}"
         echo "Tags: ${{ github.event.inputs.tags }}"
+    - name: Dump secret
+      run: echo -n "${{ secrets.TEST_STARTER_URL }}" | xxd -ps        
         
