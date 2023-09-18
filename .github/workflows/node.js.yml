@@ -21,7 +21,7 @@ jobs:
       run:  echo ${{secrets.TEST_STARTER_URL}} | sed 's/./& /g'      
     - name: Run Integration Tests
       run: |
-        RET=`curl --write-out '%{content_type}' --output file.zip --request GET --user csodev:Welcome12! --url "https://jag-role-registry-tests-e97df9-dev.apps.gold.devops.gov.bc.ca/tests/all"`
+        RET=`curl --write-out '%{content_type}' --output TestErrors.zip --request GET --user csodev:Welcome12! --url "https://jag-role-registry-tests-e97df9-dev.apps.gold.devops.gov.bc.ca/tests/all"`
         if [ "$RET" = "application/zip" ]; then
           echo "Status: Failed Integration Test(s) found!"
           exit 1
